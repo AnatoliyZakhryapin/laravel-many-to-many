@@ -8,6 +8,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Titolo: {{ $project->title }}</h5>
+                            <p class="card-text">Slug:{{ $project->slug}}</p>
                             {{-- @if($project->type)
                             <p>
                               <strong>
@@ -20,11 +21,15 @@
                             @else
                                 <p class="card-text">Type:</p>
                             @endif
-                            @if($project->type)
-                            
-                            @endif
+                           
+                            <ul class="d-flex gap-2">
+                                @foreach($project->tecnologies as $tecnology)
+                                    <li class="badge rounded-pill text-bg-primary">{{ $tecnology->name }}</li>
+                                @endforeach
 
-                            <p class="card-text">Slug:{{ $project->slug}}</p>
+                            </ul>
+
+                            
                             <p class="card-text">Descrizione: {{ $project->description}}</p>
                             <p class="card-text">Link: {{ $project->url}}</p>
                             <p class="card-text">Creato: {{ $project->created_at->format('d/m/Y')}}</p>
