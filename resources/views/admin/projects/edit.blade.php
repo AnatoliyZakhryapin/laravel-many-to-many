@@ -18,6 +18,11 @@
                             </div>
 
                             <div class="mb-3">
+                              <label for="slug" class="form-label">Slug</label>
+                              <input type="text" readonly required class="form-control" name="slug" id="slug" placeholder="Slug" value="{{ old('slug', $project->slug) }}">
+                            </div>
+
+                            <div class="mb-3">
                               <label for="type_id" class="form-label">Types</label>
                               <select name="type_id" class="form-control" id="type_id">
                                 <option disabled selected value>Seleziona type</option>
@@ -26,10 +31,26 @@
                                 @endforeach
                               </select>
                             </div>
-                    
-                            <div class="mb-3">
-                                <label for="slug" class="form-label">Slug</label>
-                                <input type="text" readonly required class="form-control" name="slug" id="slug" placeholder="Slug" value="{{ old('slug', $project->slug) }}">
+
+                            <div class="form-group mb-3">
+                              <p>Seleziona la tecnologia:</p>
+                              <div class="d-flex flex-wrap gap-4">
+                                @foreach($tecnologies as $tecnology)
+                                  <div class="form-check">
+                                    <input 
+                                      name='tecnologies[]' 
+                                      class="form-check-input" 
+                                      type="checkbox" 
+                                      value="{{$tecnology->id}}" 
+                                      id="tecnology-{{$tecnology->id}}" 
+                                      @checked(in_array($tecnology->id, old('tecnologies', $project->tecnologies->pluck('id')->all())))
+                                    >
+                                    <label class="form-check-label" for="tecnology-{{$tecnology->id}}">
+                                      {{$tecnology->name}}
+                                    </label>
+                                  </div>
+                                @endforeach
+                              </div>
                             </div>
                       
                             <div class="mb-3">

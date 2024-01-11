@@ -25,7 +25,7 @@
                     </select>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group mb-3">
                     <p>Seleziona la tecnologia:</p>
                     <div class="d-flex flex-wrap gap-4">
                       @foreach($tecnologies as $tecnology)

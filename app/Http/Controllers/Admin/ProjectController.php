@@ -73,8 +73,11 @@ class ProjectController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Project $project)
-    {   $types = Type::orderBy('name', 'ASC')->get();
-        return view('admin.projects.edit', compact('project', 'types'));
+    {   
+        $types = Type::orderBy('name', 'ASC')->get();
+        $tecnologies = Tecnology::orderBy('name', 'ASC')->get();
+
+        return view('admin.projects.edit', compact('project', 'types', 'tecnologies'));
     }
 
     /**
@@ -82,12 +85,20 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-
-        
         $data = $request->all();
         $data['slug'] = Str::slug($data['title'], '-');
 
         $project->update($data);
+
+        if ($request->has('tecnologies')) {
+            $project->tecnologies()->sync($data['tecnologies']);
+            // $project->tecnologies()->attach($request->tecnologies);
+        } else {
+            // $project->tecnologies()->sync([]);
+            $project->tecnologies()->detach();
+        }
+        
+
         return redirect()->route('admin.projects.show', $project);
     }
 
