@@ -9,6 +9,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Titolo: {{ $project->title }}</h5>
                             <p class="card-text">Slug:{{ $project->slug}}</p>
+                        
                             {{-- @if($project->type)
                             <p>
                               <strong>
@@ -29,10 +30,10 @@
 
                             </ul>
 
-                            
                             <p class="card-text">Descrizione: {{ $project->description}}</p>
+                            <p class="card-text">Creato da: {{ $project->user->name}}</p>
                             <p class="card-text">Link: {{ $project->url}}</p>
-                            <p class="card-text">Creato: {{ $project->created_at->format('d/m/Y')}}</p>
+                            <p class="card-text">Data: {{ $project->created_at->format('d/m/Y')}}</p>
                             <p class="card-text">Aggiornato: {{ $project->updated_at->format('d/m/Y')}}</p>
                         </div>
                         <div class="card-body">
