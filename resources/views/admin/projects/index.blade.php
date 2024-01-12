@@ -29,6 +29,7 @@
                     <th scope="col">Title</th>
                     <th scope="col">Slug</th>
                     <th scope="col">Type</th>
+                    <th scope="col">User</th>
                     <th scope="col">Description</th>
                     <th scope="col">URL</th>
                     <th scope="col">Created</th>
@@ -51,6 +52,7 @@
                             {{ isset($project->type) ? $project->type->name : '-'}}
                             {{-- {{ optional($project->type)->name  }} --}}
                         </td>
+                        <td> {{ $project->user->name}}</td>
                         <td> {{ $project->description}}</td>
                         <td> {{ $project->url}}</td>
                         <td> {{ $project->created_at}}</td>
