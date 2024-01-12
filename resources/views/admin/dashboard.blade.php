@@ -22,5 +22,20 @@
             </div>
         </div>
     </div>
+
+    <div class="container">
+        <h2>I miei progetti </h2>
+    
+        <div class="row">
+            @foreach ($user->projects as $project)
+                <div class="col-4">
+                    <a href="{{ route('admin.projects.show',$project) }}">
+                    <h3>{{ $project->title }}</h3>
+                    <p>{{ optional($project->type)->name }}</p>
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    </div>
 </div>
 @endsection
