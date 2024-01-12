@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Tecnology;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class ProjectController extends Controller
@@ -49,8 +50,11 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         $data = $request->all();
+        // Creamo lo slug
         $data['slug'] = Str::slug($data['title'], '-');
-        
+        // Assegnamo il valore id del utente collegato tramite Auth::id()
+        $data['user_id'] = Auth::id();
+       
         $project = Project::create($data);
 
         if ($request->has('tecnologies')) {
