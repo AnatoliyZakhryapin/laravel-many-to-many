@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ProjectController;
+use App\Http\Controllers\Admin\LeadController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -26,6 +27,9 @@ Route::middleware(['auth', 'verified'])
     ->group(function(){
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
         Route::resource('projects', ProjectController::class);
+        // Route::get('/contatti',[LeadController::class, 'create'])->name('leads.create');
+        // Route::post('/contatti',[LeadController::class, 'store'])->name('leads.create');
+        Route::resource('leads',LeadController::class)->only(['create', 'store']);
     });
 
 Route::middleware('auth')->group(function () {
